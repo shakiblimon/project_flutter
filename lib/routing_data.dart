@@ -43,6 +43,14 @@ class FirstScreenState extends State<FirstScreenWidget>{
   var _value = 50.0;
 
   _navigateUsingConstructor() async{
-    _value = await Navigator.of(context)
+    _value = await Navigator.of(context).push(
+     new MaterialPageRoute(
+         builder: (context) => new SecondScreenWidget(value=_value)
+     )
+    )?? 1.0;
   }
+}
+
+  _navigateUsingRoute() async{
+    _value = await Navigator.of(context).pushNamed('/second/$_value') ?? 1.0;
 }
